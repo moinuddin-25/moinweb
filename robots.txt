@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moinuddin-25.github.io/moinweb/sitemap.xml
