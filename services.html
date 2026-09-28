@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Moinuddin — Services | Web Design, SEO & Growth Systems</title>
+  <meta name="description" content="Web design, SEO, local visibility, and conversion-focused systems engineered to turn digital presence into business growth.">
+  <link rel="canonical" href="https://moinuddin.com/services.html">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://moinuddin.com/services.html">
+  <meta property="og:title" content="Moinuddin — Services | Web Design, SEO & Growth Systems">
+  <meta property="og:description" content="More than a website. A complete digital growth system designed to help businesses get discovered, build trust, and generate opportunities.">
+  <meta property="og:image" content="assets/images/moinuddin.webp">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            day: {
+              bg: '#F4F5F7',
+              primary: '#0B0D10',
+              secondary: '#667085',
+              accent: '#FF5C35',
+              surface: '#FFFFFF',
+              border: '#D9DDE3'
+            },
+            night: {
+              bg: '#08090C',
+              primary: '#F5F7FA',
+              secondary: '#98A2B3',
+              accent: '#FF6B45',
+              surface: '#111318',
+              border: '#242832'
+            }
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['Cinzel', 'Playfair Display', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'Courier New', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Variables & Art Direction Override */
+    :root {
+      --bg: #F4F5F7;
+      --primary: #0B0D10;
+      --secondary: #667085;
+      --accent: #FF5C35;
+      --surface: #FFFFFF;
+      --border: #D9DDE3;
+      --grid: rgba(11, 13, 16, 0.04);
+    }
+
+    .dark {
+      --bg: #08090C;
+      --primary: #F5F7FA;
+      --secondary: #98A2B3;
+      --accent: #FF6B45;
+      --surface: #111318;
+      --border: #242832;
+      --grid: rgba(245, 247, 250, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      cursor: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--primary);
+      transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .viewport-canvas {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+
+    .layer-bg { transform: translateZ(-60px) scale(1.05); }
+
+    .bg-grid-pattern {
+      background-image: 
+        linear-gradient(to right, var(--grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+      background-size: 80px 80px;
+      background-attachment: fixed;
+    }
+
+    #cursor-dot {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      width: 12px;
+      height: 12px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  height 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      mix-blend-mode: difference;
+    }
+
+    #cursor-dot span {
+      opacity: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #000;
+      transition: opacity 0.2s ease;
+    }
+
+    #cursor-dot.expand {
+      width: 72px;
+      height: 72px;
+      background-color: var(--primary);
+      mix-blend-mode: normal;
+    }
+
+    #cursor-dot.expand span {
+      opacity: 1;
+    }
+
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .clip-reveal {
+      clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+      transition: clip-path 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .clip-reveal.revealed {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .service-scene {
+      transition: transform 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
+    }
+    .service-scene:hover {
+      border-color: var(--accent);
+    }
+    .service-scene:hover .service-accent-line {
+      opacity: 1;
+    }
+
+    .journey-node {
+      transition: all 0.4s ease;
+    }
+    .journey-node.active-stage {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .journey-node.active-stage .stage-num {
+      color: var(--accent);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, #cursor-dot { animation: none !important; transition: none !important; transform: none !important; }
+      * { cursor: auto !important; }
+      #cursor-dot { display: none !important; }
+      .reveal-item { opacity: 1 !important; transform: none !important; }
+      .clip-reveal { clip-path: none !important; }
+    }
+
+    @media (pointer: coarse) {
+      #cursor-dot { display: none !important; }
+      * { cursor: auto !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-day-bg text-day-primary dark:bg-night-bg dark:text-night-primary selection:bg-day-accent dark:selection:bg-night-accent selection:text-white transition-colors duration-500">
+
+  <div id="cursor-dot"><span id="cursor-text"></span></div>
+
+  <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference">
+    <a href="index.html" class="font-mono text-xs font-bold tracking-widest text-white hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+      MOINUDDIN.COM
+    </a>
+
+    <div class="hidden sm:flex items-center gap-2 px-3 py-1 border border-white/20 rounded-full text-[10px] font-mono tracking-widest uppercase text-white/80 backdrop-blur-md">
+      <span>SERVICES / 03</span>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" aria-label="Toggle Theme System" class="flex items-center gap-2 cursor-pointer border border-white/20 px-3 py-1.5 rounded-full backdrop-blur-md hover:border-white transition-all duration-300">
+        <span class="text-[10px] font-mono uppercase tracking-widest text-white">MODE</span>
+        <div class="w-2.5 h-2.5 rounded-full border border-white flex items-center justify-center p-0.5">
+          <div id="theme-dot" class="w-full h-full bg-white rounded-full transition-transform duration-300"></div>
+        </div>
+      </button>
+
+      <button id="menu-toggle" aria-label="Toggle Navigation Menu" class="flex items-center gap-2 cursor-pointer border border-white/20 px-4 py-1.5 rounded-full backdrop-blur-md hover:border-white transition-all duration-300">
+        <span id="menu-text" class="text-[10px] font-mono uppercase tracking-widest text-white">MENU</span>
+        <span class="w-2 h-2 rounded-full bg-day-accent dark:bg-night-accent"></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="nav-overlay" class="fixed inset-0 z-40 bg-day-bg dark:bg-night-bg opacity-0 pointer-events-none transition-opacity duration-500 flex flex-col justify-between p-8 md:p-16">
+    <div class="flex justify-between items-center font-mono text-xs text-day-secondary dark:text-night-secondary">
+      <span>SYSTEM NAVIGATION</span>
+      <span>SERVICES // 03</span>
+    </div>
+
+    <nav aria-label="Overlay Navigation" class="my-auto">
+      <ul class="flex flex-col gap-4 md:gap-6 font-mono">
+        <li>
+          <a href="index.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">01</span>
+            <span>HOME</span>
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">02</span>
+            <span>ABOUT</span>
+          </a>
+        </li>
+        <li>
+          <a href="services.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-accent dark:text-night-accent cursor-open">
+            <span class="text-xs font-mono transition-colors">03</span>
+            <span>SERVICES</span>
+            <span class="text-xs font-mono border border-day-accent dark:border-night-accent px-2 py-0.5 rounded-full">ACTIVE</span>
+          </a>
+        </li>
+        <li>
+          <a href="projects.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">04</span>
+            <span>PROJECTS</span>
+          </a>
+        </li>
+        <li>
+          <a href="recommendations.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">05</span>
+            <span>RECOMMENDATIONS</span>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">06</span>
+            <span>CONTACT</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="border-t border-day-border dark:border-night-border pt-4 font-mono text-[10px] tracking-widest text-day-secondary dark:text-night-secondary uppercase flex justify-between">
+      <span>MOINUDDIN.COM</span>
+      <span>DIGITAL GROWTH SYSTEMS</span>
+    </div>
+  </div>
+
+  <main id="composition-wrapper" class="relative w-full min-h-screen viewport-canvas bg-grid-pattern pt-28 pb-16">
+
+    <div class="layer-bg fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div class="absolute top-1/4 left-12 font-mono text-[10px] text-day-secondary dark:text-night-secondary opacity-35 parallax-elem" data-depth="0.02">// GROWTH_ARCHITECTURE_LAB</div>
+      <div class="absolute top-2/3 right-16 font-mono text-[10px] text-day-secondary dark:text-night-secondary opacity-35 parallax-elem" data-depth="0.04">[SYSTEM_NODES: ACTIVE]</div>
+      <div class="absolute bottom-10 left-1/3 font-mono text-[10px] text-day-secondary dark:text-night-secondary opacity-35 parallax-elem" data-depth="0.03">+ TARGET_AUDIENCE: HIGH_TRUST_SERVICES</div>
+    </div>
+
+    <section class="relative z-10 min-h-[85vh] flex flex-col justify-center px-6 md:px-16 lg:px-24 mb-20">
+      <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-8">
+          <div class="inline-flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent reveal-item">
+            <span>SERVICES / 03</span>
+            <span class="w-8 h-[1px] bg-day-accent dark:bg-night-accent"></span>
+            <span>STRATEGIC DIGITAL ARCHITECTURE</span>
+          </div>
+
+          <h1 class="font-bold tracking-tighter uppercase leading-[0.85] text-day-primary dark:text-night-primary select-none">
+            <span class="block text-5xl sm:text-7xl md:text-8xl font-black clip-reveal">
+              MORE THAN
+            </span>
+            <span class="block text-5xl sm:text-7xl md:text-8xl font-black clip-reveal text-day-secondary dark:text-night-secondary">
+              A WEBSITE<span class="text-day-accent dark:text-night-accent font-sans">.</span>
+            </span>
+            <span class="block text-4xl sm:text-6xl md:text-7xl font-serif italic text-day-accent dark:text-night-accent mt-2 clip-reveal">
+              A GROWTH SYSTEM.
+            </span>
+          </h1>
+
+          <p class="text-lg md:text-2xl font-light text-day-secondary dark:text-night-secondary max-w-xl leading-relaxed reveal-item border-l-2 border-day-accent dark:border-night-accent pl-6 py-1">
+            “From strategy and design to SEO, lead generation, and conversion optimization — every part is built with business growth in mind.”
+          </p>
+
+          <div class="flex flex-wrap items-center gap-6 pt-4 reveal-item">
+            <a href="#services" class="cursor-open px-8 py-4 bg-day-primary dark:bg-night-primary text-day-bg dark:text-night-bg font-mono text-xs uppercase tracking-widest hover:bg-day-accent dark:hover:bg-night-accent hover:text-white transition-colors duration-300">
+              EXPLORE SERVICES ↓
+            </a>
+            <a href="contact.html" class="cursor-open px-8 py-4 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-widest text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent transition-colors duration-300">
+              START A PROJECT →
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center relative reveal-item">
+          <div id="hero-system-visual" class="relative w-full max-w-md aspect-square rounded-2xl border border-day-border dark:border-night-border bg-day-surface/90 dark:bg-night-surface/90 p-8 shadow-2xl backdrop-blur-md flex flex-col justify-between overflow-hidden">
+            
+            <div class="flex justify-between items-center font-mono text-[10px] uppercase text-day-secondary dark:text-night-secondary border-b border-day-border dark:border-night-border pb-4">
+              <span>SYSTEM DIAGRAM</span>
+              <span class="text-day-accent dark:text-night-accent animate-pulse">● LIVE METRICS</span>
+            </div>
+
+            <div class="relative my-auto py-8 space-y-6">
+              <div class="flex items-center gap-4 p-3 border border-day-border dark:border-night-border bg-day-bg/80 dark:bg-night-bg/80 rounded-lg">
+                <span class="w-3 h-3 rounded-full bg-day-accent dark:bg-night-accent"></span>
+                <div class="font-mono text-xs font-bold uppercase tracking-wider">01 / WEBSITE ARCHITECTURE</div>
+              </div>
+
+              <div class="w-[1px] h-6 bg-day-accent dark:bg-night-accent ml-4"></div>
+
+              <div class="flex items-center gap-4 p-3 border border-day-border dark:border-night-border bg-day-bg/80 dark:bg-night-bg/80 rounded-lg ml-6">
+                <span class="w-3 h-3 rounded-full bg-day-accent dark:bg-night-accent"></span>
+                <div class="font-mono text-xs font-bold uppercase tracking-wider">02 / SEARCH VISIBILITY</div>
+              </div>
+
+              <div class="w-[1px] h-6 bg-day-accent dark:bg-night-accent ml-10"></div>
+
+              <div class="flex items-center gap-4 p-3 border border-day-accent dark:border-night-accent bg-day-surface dark:bg-night-surface rounded-lg ml-12 shadow-md">
+                <span class="w-3 h-3 rounded-full bg-day-accent dark:bg-night-accent animate-ping"></span>
+                <div class="font-mono text-xs font-bold uppercase tracking-wider text-day-accent dark:text-night-accent">03 / HIGH-TRUST LEAD ENQUIRIES</div>
+              </div>
+            </div>
+
+            <div class="font-mono text-[9px] uppercase tracking-widest text-day-secondary dark:text-night-secondary flex justify-between border-t border-day-border dark:border-night-border pt-4">
+              <span>TARGET: HIGH VALUE CLIENTS</span>
+              <span>RESULT: OPPORTUNITIES</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="services" class="relative z-10 px-6 md:px-16 lg:px-24 py-24 border-t border-day-border dark:border-night-border">
+      <div class="max-w-7xl mx-auto space-y-20">
+        
+        <div class="space-y-4 reveal-item">
+          <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent">
+            CAPABILITIES // 03
+          </div>
+          <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tighter text-day-primary dark:text-night-primary">
+            THE DIGITAL GROWTH SYSTEM<span class="text-day-accent dark:text-night-accent">.</span>
+          </h2>
+          <p class="text-lg font-light text-day-secondary dark:text-night-secondary">
+            “Each service is designed to support the next.”
+          </p>
+        </div>
+
+        <!-- Service 01 -->
+        <article class="service-scene p-8 md:p-14 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-2xl shadow-xl relative overflow-hidden reveal-item">
+          <div class="service-accent-line absolute top-0 left-0 w-2 h-full bg-day-accent dark:bg-night-accent opacity-0 transition-all duration-300"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-6 space-y-6">
+              <span class="font-mono text-3xl font-bold text-day-accent dark:text-night-accent block">01</span>
+              <h3 class="text-3xl sm:text-5xl font-bold uppercase tracking-tighter text-day-primary dark:text-night-primary">
+                WEB DESIGN & DEVELOPMENT
+              </h3>
+              <p class="text-base md:text-xl font-light text-day-secondary dark:text-night-secondary leading-relaxed">
+                “Build a high-trust, fast, responsive website designed around the customer's journey.”
+              </p>
+
+              <div class="pt-4 border-t border-day-border dark:border-night-border space-y-4">
+                <span class="font-mono text-xs uppercase tracking-widest text-day-primary dark:text-night-primary block">CORE CAPABILITIES</span>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">UX / UI DESIGN</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">WORDPRESS DEVELOPMENT</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">RESPONSIVE DESIGN</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">SPEED OPTIMIZATION</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">CONVERSION-FOCUSED STRUCTURE</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6">
+              <div class="border border-day-border dark:border-night-border bg-day-bg dark:bg-night-bg rounded-xl p-4 md:p-6 space-y-4 shadow-inner">
+                <div class="flex items-center justify-between border-b border-day-border dark:border-night-border pb-3">
+                  <div class="flex gap-2">
+                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                  </div>
+                  <span class="font-mono text-[10px] text-day-secondary dark:text-night-secondary">INTERFACE_SYSTEM.WEBP</span>
+                </div>
+                <div class="relative overflow-hidden rounded-lg border border-day-border/50 dark:border-night-border/50 group">
+                  <img 
+                    src="assets/images/web-design-development.webp" 
+                    alt="Web Design and Development System Preview" 
+                    width="600" 
+                    height="400" 
+                    loading="lazy" 
+                    decoding="async" 
+                    class="w-full h-auto max-h-72 object-cover object-center rounded transition-transform duration-700 group-hover:scale-105"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 02 -->
+        <article class="service-scene p-8 md:p-14 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-2xl shadow-xl relative overflow-hidden reveal-item">
+          <div class="service-accent-line absolute top-0 left-0 w-2 h-full bg-day-accent dark:bg-night-accent opacity-0 transition-all duration-300"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-6 space-y-6">
+              <span class="font-mono text-3xl font-bold text-day-accent dark:text-night-accent block">02</span>
+              <h3 class="text-3xl sm:text-5xl font-bold uppercase tracking-tighter text-day-primary dark:text-night-primary">
+                SEO & LOCAL VISIBILITY
+              </h3>
+              <p class="text-base md:text-xl font-light text-day-secondary dark:text-night-secondary leading-relaxed">
+                “Help the right people discover the business through search.”
+              </p>
+
+              <div class="pt-4 border-t border-day-border dark:border-night-border space-y-4">
+                <span class="font-mono text-xs uppercase tracking-widest text-day-primary dark:text-night-primary block">CORE CAPABILITIES</span>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">TECHNICAL SEO</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">ON-PAGE SEO</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">LOCAL SEO</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">GOOGLE BUSINESS PROFILE</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">KEYWORD RESEARCH</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">CONTENT STRATEGY</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6">
+              <div class="border border-day-border dark:border-night-border bg-day-bg dark:bg-night-bg rounded-xl p-4 md:p-6 space-y-4 shadow-inner">
+                <div class="font-mono text-[10px] text-day-secondary dark:text-night-secondary border-b border-day-border dark:border-night-border pb-3 flex justify-between">
+                  <span>SEARCH DISCOVERY SYSTEM</span>
+                  <span class="text-day-accent dark:text-night-accent">VISIBILITY: HIGH</span>
+                </div>
+                <div class="relative overflow-hidden rounded-lg border border-day-border/50 dark:border-night-border/50 group">
+                  <img 
+                    src="assets/images/seo-local-visibility.webp" 
+                    alt="SEO and Local Search Engine Optimization Interface" 
+                    width="600" 
+                    height="400" 
+                    loading="lazy" 
+                    decoding="async" 
+                    class="w-full h-auto max-h-72 object-cover object-center rounded transition-transform duration-700 group-hover:scale-105"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 03 -->
+        <article class="service-scene p-8 md:p-14 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-2xl shadow-xl relative overflow-hidden reveal-item">
+          <div class="service-accent-line absolute top-0 left-0 w-2 h-full bg-day-accent dark:bg-night-accent opacity-0 transition-all duration-300"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-6 space-y-6">
+              <span class="font-mono text-3xl font-bold text-day-accent dark:text-night-accent block">03</span>
+              <h3 class="text-3xl sm:text-5xl font-bold uppercase tracking-tighter text-day-primary dark:text-night-primary">
+                LEAD GENERATION & CONVERSION
+              </h3>
+              <p class="text-base md:text-xl font-light text-day-secondary dark:text-night-secondary leading-relaxed">
+                “Turn website visitors into meaningful enquiries.”
+              </p>
+
+              <div class="pt-4 border-t border-day-border dark:border-night-border space-y-4">
+                <span class="font-mono text-xs uppercase tracking-widest text-day-primary dark:text-night-primary block">CORE CAPABILITIES</span>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">LANDING PAGES</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">CTA OPTIMIZATION</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">LEAD FORMS</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">CONVERSION TRACKING</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">CALL / CONTACT TRACKING</span>
+                  <span class="px-3 py-1 border border-day-border dark:border-night-border rounded-full font-mono text-xs text-day-secondary dark:text-night-secondary">CRO OPTIMIZATION</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6">
+              <div class="border border-day-border dark:border-night-border bg-day-bg dark:bg-night-bg rounded-xl p-4 md:p-6 space-y-4 shadow-inner">
+                <div class="font-mono text-[10px] text-day-secondary dark:text-night-secondary border-b border-day-border dark:border-night-border pb-3 flex justify-between">
+                  <span>CONVERSION PATHWAY</span>
+                  <span class="text-day-accent dark:text-night-accent">STATUS: OPTIMIZED</span>
+                </div>
+                <div class="relative overflow-hidden rounded-lg border border-day-border/50 dark:border-night-border/50 group">
+                  <img 
+                    src="assets/images/lead-generation-conversion.webp" 
+                    alt="Lead Generation and Conversion Optimization Dashboard" 
+                    width="600" 
+                    height="400" 
+                    loading="lazy" 
+                    decoding="async" 
+                    class="w-full h-auto max-h-72 object-cover object-center rounded transition-transform duration-700 group-hover:scale-105"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 px-6 md:px-16 lg:px-24 py-28 border-t border-day-border dark:border-night-border bg-day-surface/40 dark:bg-night-surface/40">
+      <div class="max-w-7xl mx-auto space-y-16">
+        
+        <div class="space-y-4 reveal-item">
+          <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent">
+            METHODOLOGY // 04
+          </div>
+          <h2 class="text-4xl sm:text-7xl font-black uppercase tracking-tighter text-day-primary dark:text-night-primary">
+            HOW GROWTH HAPPENS<span class="text-day-accent dark:text-night-accent">.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 relative">
+          
+          <div class="journey-node p-6 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-3 reveal-item" data-stage="1">
+            <span class="stage-num font-mono text-xs font-bold text-day-secondary dark:text-night-secondary">01</span>
+            <h4 class="font-bold uppercase tracking-wider text-sm">STRATEGY</h4>
+            <p class="font-light text-xs text-day-secondary dark:text-night-secondary">Audience & competitor positioning</p>
+          </div>
+
+          <div class="journey-node p-6 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-3 reveal-item" data-stage="2">
+            <span class="stage-num font-mono text-xs font-bold text-day-secondary dark:text-night-secondary">02</span>
+            <h4 class="font-bold uppercase tracking-wider text-sm">WEBSITE</h4>
+            <p class="font-light text-xs text-day-secondary dark:text-night-secondary">High-trust visual architecture</p>
+          </div>
+
+          <div class="journey-node p-6 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-3 reveal-item" data-stage="3">
+            <span class="stage-num font-mono text-xs font-bold text-day-secondary dark:text-night-secondary">03</span>
+            <h4 class="font-bold uppercase tracking-wider text-sm">VISIBILITY</h4>
+            <p class="font-light text-xs text-day-secondary dark:text-night-secondary">Search engine optimization</p>
+          </div>
+
+          <div class="journey-node p-6 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-3 reveal-item" data-stage="4">
+            <span class="stage-num font-mono text-xs font-bold text-day-secondary dark:text-night-secondary">04</span>
+            <h4 class="font-bold uppercase tracking-wider text-sm">VISITORS</h4>
+            <p class="font-light text-xs text-day-secondary dark:text-night-secondary">High-intent client traffic</p>
+          </div>
+
+          <div class="journey-node p-6 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-3 reveal-item" data-stage="5">
+            <span class="stage-num font-mono text-xs font-bold text-day-secondary dark:text-night-secondary">05</span>
+            <h4 class="font-bold uppercase tracking-wider text-sm">LEADS</h4>
+            <p class="font-light text-xs text-day-secondary dark:text-night-secondary">Conversion tracking & forms</p>
+          </div>
+
+          <div class="journey-node p-6 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-3 reveal-item" data-stage="6">
+            <span class="stage-num font-mono text-xs font-bold text-day-secondary dark:text-night-secondary">06</span>
+            <h4 class="font-bold uppercase tracking-wider text-sm">GROWTH</h4>
+            <p class="font-light text-xs text-day-secondary dark:text-night-secondary">Predictable client pipelines</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 py-36 px-6 md:px-16 lg:px-24 border-t border-b border-day-border dark:border-night-border">
+      <div class="max-w-5xl mx-auto text-center space-y-8">
+        <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent reveal-item">
+          CORE STATEMENT
+        </div>
+        <h2 class="text-4xl sm:text-7xl font-bold uppercase tracking-tighter text-day-primary dark:text-night-primary reveal-item leading-tight">
+          “A BEAUTIFUL WEBSITE GETS ATTENTION<span class="text-day-accent dark:text-night-accent">.</span>”
+        </h2>
+        <p class="text-3xl sm:text-6xl font-serif italic text-day-accent dark:text-night-accent reveal-item">
+          A well-designed system creates opportunities.
+        </p>
+      </div>
+    </section>
+
+    <section class="relative z-10 px-6 md:px-16 lg:px-24 py-28 border-b border-day-border dark:border-night-border">
+      <div class="max-w-7xl mx-auto space-y-16">
+        
+        <div class="space-y-4 reveal-item">
+          <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent">
+            VALUE CREATION
+          </div>
+          <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tighter text-day-primary dark:text-night-primary">
+            BUILT FOR BUSINESS OUTCOMES<span class="text-day-accent dark:text-night-accent">.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <div class="p-8 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-4 reveal-item">
+            <span class="font-mono text-xl font-bold text-day-accent dark:text-night-accent block">01</span>
+            <h3 class="font-bold text-xl uppercase tracking-tight">BE FOUND</h3>
+            <p class="font-light text-sm text-day-secondary dark:text-night-secondary leading-relaxed">
+              Increase relevant search visibility and capture high-intent clients searching for your exact services.
+            </p>
+          </div>
+
+          <div class="p-8 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-4 reveal-item">
+            <span class="font-mono text-xl font-bold text-day-accent dark:text-night-accent block">02</span>
+            <h3 class="font-bold text-xl uppercase tracking-tight">BUILD TRUST</h3>
+            <p class="font-light text-sm text-day-secondary dark:text-night-secondary leading-relaxed">
+              Turn first-time visitors into confident prospects with high-trust design and clear authority framing.
+            </p>
+          </div>
+
+          <div class="p-8 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-4 reveal-item">
+            <span class="font-mono text-xl font-bold text-day-accent dark:text-night-accent block">03</span>
+            <h3 class="font-bold text-xl uppercase tracking-tight">GENERATE LEADS</h3>
+            <p class="font-light text-sm text-day-secondary dark:text-night-secondary leading-relaxed">
+              Make it frictionless for prospects to call, send enquiries, or schedule strategy consultations.
+            </p>
+          </div>
+
+          <div class="p-8 border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface rounded-xl space-y-4 reveal-item">
+            <span class="font-mono text-xl font-bold text-day-accent dark:text-night-accent block">04</span>
+            <h3 class="font-bold text-xl uppercase tracking-tight">MEASURE & IMPROVE</h3>
+            <p class="font-light text-sm text-day-secondary dark:text-night-secondary leading-relaxed">
+              Use real data and conversion metrics to continuously optimize and refine platform performance.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 px-6 md:px-16 lg:px-24 py-28 border-b border-day-border dark:border-night-border bg-day-surface/20 dark:bg-night-surface/20">
+      <div class="max-w-6xl mx-auto space-y-16">
+        
+        <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent text-center reveal-item">
+          STRATEGIC COMPARISON
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+          
+          <div class="p-8 md:p-12 border border-day-border dark:border-night-border bg-day-bg/40 dark:bg-night-bg/40 rounded-2xl space-y-8 opacity-70 reveal-item">
+            <span class="font-mono text-xs uppercase tracking-widest text-day-secondary dark:text-night-secondary">THE CONVENTIONAL WAY</span>
+            <h3 class="text-3xl font-bold uppercase tracking-tight text-day-secondary dark:text-night-secondary">TYPICAL WEBSITE</h3>
+            
+            <div class="space-y-6 font-mono text-sm text-day-secondary dark:text-night-secondary">
+              <div class="p-3 border border-day-border dark:border-night-border rounded">Looks good</div>
+              <div class="text-center font-bold">↓</div>
+              <div class="p-3 border border-day-border dark:border-night-border rounded">Gets launched</div>
+              <div class="text-center font-bold">↓</div>
+              <div class="p-3 border border-day-border dark:border-night-border rounded">Gets forgotten</div>
+            </div>
+          </div>
+
+          <div class="p-8 md:p-12 border-2 border-day-accent dark:border-night-accent bg-day-surface dark:bg-night-surface rounded-2xl space-y-8 shadow-2xl relative reveal-item">
+            <span class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent font-bold">THE MOINUDDIN METHOD</span>
+            <h3 class="text-3xl font-bold uppercase tracking-tight text-day-primary dark:text-night-primary">GROWTH-FOCUSED WEBSITE</h3>
+            
+            <div class="space-y-3 font-mono text-sm text-day-primary dark:text-night-primary">
+              <div class="p-3 border border-day-accent/40 dark:border-night-accent/40 rounded bg-day-bg dark:bg-night-bg font-bold flex justify-between">
+                <span>01 / STRATEGY</span>
+                <span class="text-day-accent dark:text-night-accent">POSITIONED</span>
+              </div>
+              <div class="p-3 border border-day-accent/40 dark:border-night-accent/40 rounded bg-day-bg dark:bg-night-bg font-bold flex justify-between">
+                <span>02 / HIGH-TRUST DESIGN</span>
+                <span class="text-day-accent dark:text-night-accent">OPTIMIZED</span>
+              </div>
+              <div class="p-3 border border-day-accent/40 dark:border-night-accent/40 rounded bg-day-bg dark:bg-night-bg font-bold flex justify-between">
+                <span>03 / TECHNICAL SEO</span>
+                <span class="text-day-accent dark:text-night-accent">DISCOVERABLE</span>
+              </div>
+              <div class="p-3 border border-day-accent/40 dark:border-night-accent/40 rounded bg-day-bg dark:bg-night-bg font-bold flex justify-between">
+                <span>04 / LEAD GENERATION</span>
+                <span class="text-day-accent dark:text-night-accent">CONVERTING</span>
+              </div>
+              <div class="p-3 border border-day-accent/40 dark:border-night-accent/40 rounded bg-day-bg dark:bg-night-bg font-bold flex justify-between">
+                <span>05 / CONTINUOUS TRACKING</span>
+                <span class="text-day-accent dark:text-night-accent">MEASURED</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 py-24 px-6 md:px-16 lg:px-24">
+      <div class="max-w-5xl mx-auto text-center space-y-8 reveal-item">
+        <h3 class="text-2xl sm:text-4xl font-bold uppercase tracking-tight">
+          “YOUR WEBSITE IS NOT AN ISOLATED ASSET.”
+        </h3>
+        <div class="flex flex-wrap justify-center items-center gap-4 font-mono text-xs md:text-sm text-day-accent dark:text-night-accent uppercase tracking-widest">
+          <span>DESIGN</span>
+          <span>→</span>
+          <span>SEO</span>
+          <span>→</span>
+          <span>VISITORS</span>
+          <span>→</span>
+          <span>CONVERSION</span>
+          <span>→</span>
+          <span>GROWTH</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative z-10 py-32 px-6 md:px-16 lg:px-24 border-t-2 border-day-primary dark:border-night-primary bg-day-surface dark:bg-night-surface">
+      <div class="max-w-5xl mx-auto text-center space-y-8">
+        <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent reveal-item">
+          START WITH THE BUSINESS GOAL.
+        </div>
+
+        <h2 class="text-4xl sm:text-7xl font-black uppercase tracking-tighter text-day-primary dark:text-night-primary reveal-item leading-tight">
+          YOUR WEBSITE SHOULD DO MORE THAN EXIST<span class="text-day-accent dark:text-night-accent">.</span><br>
+          <span class="font-serif italic font-normal text-day-accent dark:text-night-accent">IT SHOULD WORK FOR YOUR BUSINESS.</span>
+        </h2>
+
+        <p class="text-base sm:text-xl font-light text-day-secondary dark:text-night-secondary max-w-2xl mx-auto leading-relaxed reveal-item">
+          “Tell me what you're trying to grow, and let's build the digital system around it.”
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6 pt-6 reveal-item">
+          <a href="contact.html" class="cursor-open px-10 py-5 bg-day-primary dark:bg-night-primary text-day-bg dark:text-night-bg font-mono text-xs uppercase tracking-widest hover:bg-day-accent dark:hover:bg-night-accent hover:text-white transition-colors duration-300">
+            LET'S BUILD YOUR GROWTH SYSTEM →
+          </a>
+          <a href="projects.html" class="cursor-open px-10 py-5 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-widest text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent transition-colors duration-300">
+            VIEW MY PROJECTS →
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="page-transition" class="fixed inset-0 z-[90] bg-day-primary dark:bg-night-primary translate-y-full transition-transform duration-500 pointer-events-none"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const htmlElement = document.documentElement;
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      if (savedTheme === 'dark') {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        if (htmlElement.classList.contains('dark')) {
+          htmlElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          htmlElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      const menuToggleBtn = document.getElementById('menu-toggle');
+      const menuText = document.getElementById('menu-text');
+      const navOverlay = document.getElementById('nav-overlay');
+      let isMenuOpen = false;
+
+      menuToggleBtn.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          navOverlay.classList.remove('opacity-0', 'pointer-events-none');
+          menuText.textContent = 'CLOSE';
+        } else {
+          navOverlay.classList.add('opacity-0', 'pointer-events-none');
+          menuText.textContent = 'MENU';
+        }
+      });
+
+      const cursorDot = document.getElementById('cursor-dot');
+      const cursorText = document.getElementById('cursor-text');
+
+      let mouseX = 0, mouseY = 0;
+      let cursorX = 0, cursorY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function renderCursor() {
+        cursorX += (mouseX - cursorX) * 0.2;
+        cursorY += (mouseY - cursorY) * 0.2;
+
+        cursorDot.style.left = `${cursorX}px`;
+        cursorDot.style.top = `${cursorY}px`;
+
+        requestAnimationFrame(renderCursor);
+      }
+      requestAnimationFrame(renderCursor);
+
+      document.querySelectorAll('.cursor-open, a, button').forEach(element => {
+        element.addEventListener('mouseenter', () => {
+          cursorDot.classList.add('expand');
+          cursorText.textContent = 'OPEN';
+        });
+        element.addEventListener('mouseleave', () => {
+          cursorDot.classList.remove('expand');
+          cursorText.textContent = '';
+        });
+      });
+
+      const revealItems = document.querySelectorAll('.reveal-item, .clip-reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { rootMargin: '0px', threshold: 0.1 });
+
+      revealItems.forEach(item => revealObserver.observe(item));
+
+      const journeyNodes = document.querySelectorAll('.journey-node');
+      let activeIndex = 0;
+
+      setInterval(() => {
+        journeyNodes.forEach(node => node.classList.remove('active-stage'));
+        if (journeyNodes[activeIndex]) {
+          journeyNodes[activeIndex].classList.add('active-stage');
+        }
+        activeIndex = (activeIndex + 1) % journeyNodes.length;
+      }, 2500);
+
+      const parallaxElems = document.querySelectorAll('.parallax-elem');
+      const heroSystemVisual = document.getElementById('hero-system-visual');
+
+      let targetX = 0, targetY = 0;
+      let currentX = 0, currentY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        targetX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+        targetY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+      });
+
+      function animateParallax() {
+        currentX += (targetX - currentX) * 0.05;
+        currentY += (targetY - currentY) * 0.05;
+
+        parallaxElems.forEach(elem => {
+          const depth = parseFloat(elem.getAttribute('data-depth')) || 0.03;
+          elem.style.transform = `translate3d(${currentX * depth * 200}px, ${currentY * depth * 200}px, 0px)`;
+        });
+
+        if (heroSystemVisual) {
+          heroSystemVisual.style.transform = `perspective(1000px) rotateX(${currentY * -6}deg) rotateY(${currentX * 6}deg) translateZ(10px)`;
+        }
+
+        requestAnimationFrame(animateParallax);
+      }
+
+      if (window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        requestAnimationFrame(animateParallax);
+      }
+
+      const transitionOverlay = document.getElementById('page-transition');
+      document.querySelectorAll('a[href$=".html"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const targetUrl = link.getAttribute('href');
+          if (targetUrl && !targetUrl.startsWith('#') && !targetUrl.startsWith('http')) {
+            e.preventDefault();
+            transitionOverlay.classList.remove('translate-y-full');
+            setTimeout(() => { window.location.href = targetUrl; }, 500);
+          }
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>

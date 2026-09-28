@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Moinuddin — Projects | Web Design &amp; Development Portfolio</title>
+  <meta name="description" content="Selected work and digital case studies by Moinuddin. Exploring web design, frontend engineering, UI/UX systems, and WordPress development.">
+  <link rel="canonical" href="https://moinuddin.com/projects.html">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://moinuddin.com/projects.html">
+  <meta property="og:title" content="Moinuddin — Projects | Web Design &amp; Development Portfolio">
+  <meta property="og:description" content="A collection of digital experiences shaped through design, development, problem solving, and attention to detail.">
+  <meta property="og:image" content="assets/images/moinuddin.webp">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            day: {
+              bg: '#F4F5F7',
+              primary: '#0B0D10',
+              secondary: '#667085',
+              surface: '#FFFFFF',
+              accent: '#FF5C35',
+              border: '#D9DDE3'
+            },
+            night: {
+              bg: '#08090C',
+              primary: '#F5F7FA',
+              secondary: '#98A2B3',
+              surface: '#111318',
+              accent: '#FF6B45',
+              border: '#242832'
+            }
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['Cinzel', 'Playfair Display', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'Courier New', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Variables & Theme Foundations */
+    :root {
+      --bg: #F4F5F7;
+      --primary: #0B0D10;
+      --secondary: #667085;
+      --accent: #FF5C35;
+      --surface: #FFFFFF;
+      --border: #D9DDE3;
+      --grid: rgba(11, 13, 16, 0.04);
+    }
+
+    .dark {
+      --bg: #08090C;
+      --primary: #F5F7FA;
+      --secondary: #98A2B3;
+      --accent: #FF6B45;
+      --surface: #111318;
+      --border: #242832;
+      --grid: rgba(245, 247, 250, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      cursor: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--primary);
+      transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-x: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Spatial Canvas Baseline */
+    .viewport-canvas {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+
+    .layer-bg { transform: translateZ(-60px) scale(1.05); }
+    .layer-mid { transform: translateZ(0px); }
+    .layer-fore { transform: translateZ(40px); }
+
+    /* Fine Grid Overlay */
+    .bg-grid-pattern {
+      background-image: 
+        linear-gradient(to right, var(--grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+      background-size: 80px 80px;
+      background-attachment: fixed;
+    }
+
+    /* Custom Cursor */
+    #cursor-dot {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      width: 12px;
+      height: 12px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  height 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  background-color 0.3s ease, 
+                  border-radius 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      mix-blend-mode: difference;
+    }
+
+    #cursor-dot span {
+      opacity: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #000;
+      transition: opacity 0.2s ease;
+    }
+
+    #cursor-dot.expand {
+      width: 60px;
+      height: 60px;
+      background-color: #FFFFFF;
+      mix-blend-mode: normal;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    #cursor-dot.expand span {
+      opacity: 1;
+    }
+
+    /* Scroll Reveal & Clip Animations */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .clip-reveal {
+      clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+      transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: clip-path;
+    }
+    .clip-reveal.revealed {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* Floating Image Preview Following Mouse */
+    #hover-preview-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 380px;
+      height: 240px;
+      pointer-events: none;
+      z-index: 45;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.85);
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+
+    #hover-preview-container.active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    #hover-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Project Row Interactions */
+    .project-row {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-index-container:hover .project-row {
+      opacity: 0.35;
+      filter: blur(1px);
+    }
+
+    .project-index-container:hover .project-row:hover {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateX(12px);
+    }
+
+    /* Asymmetric Gallery Wall Wall-Items */
+    .wall-item {
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .wall-item:hover {
+      transform: translateY(-8px) scale(1.01);
+    }
+
+    .wall-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Accessibility / Motion Fallback */
+    @media (prefers-reduced-motion: reduce) {
+      *, #cursor-dot, #hover-preview-container {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+      * { cursor: auto !important; }
+      #cursor-dot { display: none !important; }
+      .reveal-item { opacity: 1 !important; transform: none !important; }
+      .clip-reveal { clip-path: none !important; }
+      .project-index-container:hover .project-row { opacity: 1 !important; filter: none !important; transform: none !important; }
+    }
+
+    @media (pointer: coarse) {
+      #cursor-dot, #hover-preview-container { display: none !important; }
+      * { cursor: auto !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-day-accent selection:text-white dark:selection:bg-night-accent dark:selection:text-black">
+
+  <div id="cursor-dot"><span id="cursor-text"></span></div>
+
+  <div id="hover-preview-container" class="bg-day-surface dark:bg-night-surface hidden sm:block">
+    <img id="hover-preview-img" src="" alt="Project Interactive Preview">
+  </div>
+
+  <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference">
+    <a href="index.html" class="font-mono text-xs font-bold tracking-widest text-white hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+      MOINUDDIN.COM
+    </a>
+
+    <div class="hidden sm:flex items-center gap-2 px-3 py-1 border border-white/20 rounded-full text-[10px] font-mono tracking-widest uppercase text-white/80 backdrop-blur-md">
+      <span>PROJECTS / 04</span>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" aria-label="Toggle Theme" class="flex items-center gap-2 cursor-pointer border border-white/20 px-3 py-1.5 rounded-full backdrop-blur-md hover:border-white transition-all duration-300">
+        <span class="text-[10px] font-mono uppercase tracking-widest text-white">MODE</span>
+        <div class="w-2.5 h-2.5 rounded-full border border-white flex items-center justify-center p-0.5">
+          <div id="theme-dot" class="w-full h-full bg-white rounded-full transition-transform duration-300"></div>
+        </div>
+      </button>
+
+      <button id="menu-toggle" aria-label="Toggle Navigation Menu" class="flex items-center gap-2 cursor-pointer border border-white/20 px-4 py-1.5 rounded-full backdrop-blur-md hover:border-white transition-all duration-300">
+        <span id="menu-text" class="text-[10px] font-mono uppercase tracking-widest text-white">MENU</span>
+        <span class="w-2 h-2 rounded-full bg-day-accent dark:bg-night-accent"></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="nav-overlay" class="fixed inset-0 z-40 bg-day-bg dark:bg-night-bg opacity-0 pointer-events-none transition-opacity duration-500 flex flex-col justify-between p-8 md:p-16">
+    <div class="flex justify-between items-center font-mono text-xs text-day-secondary dark:text-night-secondary">
+      <span>SPATIAL NAVIGATION</span>
+      <span>INDEX / 2026</span>
+    </div>
+
+    <nav aria-label="Overlay Navigation" class="my-auto">
+      <ul class="flex flex-col gap-4 md:gap-6 font-mono">
+        <li>
+          <a href="index.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">01</span>
+            <span>HOME</span>
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">02</span>
+            <span>ABOUT</span>
+          </a>
+        </li>
+        <li>
+          <a href="services.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">03</span>
+            <span>SERVICES</span>
+          </a>
+        </li>
+        <li>
+          <a href="projects.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-accent dark:text-night-accent cursor-open">
+            <span class="text-xs font-mono transition-colors">04</span>
+            <span>PROJECTS</span>
+            <span class="text-xs font-mono border border-day-accent dark:border-night-accent px-2 py-0.5 rounded-full">CURRENT</span>
+          </a>
+        </li>
+        <li>
+          <a href="recommendations.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">05</span>
+            <span>RECOMMENDATIONS</span>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">06</span>
+            <span>CONTACT</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="border-t border-day-border dark:border-night-border pt-4 font-mono text-[10px] tracking-widest text-day-secondary dark:text-night-secondary uppercase flex justify-between">
+      <span>MOINUDDIN.COM</span>
+      <span>ALL RIGHTS RESERVED</span>
+    </div>
+  </div>
+
+  <main id="composition-wrapper" class="relative w-full min-h-screen viewport-canvas bg-grid-pattern pt-28 pb-16">
+
+    <div class="layer-bg fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div class="absolute top-1/4 right-10 text-[10px] font-mono text-day-secondary/30 dark:text-night-secondary/20 parallax-elem" data-depth="0.03">+ GALLERY_LAYER // SELECTED_WORK</div>
+      <div class="absolute bottom-1/3 left-8 text-[10px] font-mono text-day-secondary/30 dark:text-night-secondary/20 parallax-elem" data-depth="0.06">[INDEX_FILTER: ACTIVE]</div>
+      <div class="absolute top-1/2 right-1/4 w-[1px] h-80 bg-day-border/30 dark:bg-night-border/20"></div>
+    </div>
+
+    <section class="relative z-10 min-h-[60vh] flex flex-col justify-center px-6 md:px-16 lg:px-24 mb-16">
+      <div class="max-w-7xl mx-auto w-full">
+        
+        <div class="inline-flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent mb-6 reveal-item">
+          <span>PROJECTS / 04</span>
+          <span class="w-8 h-[1px] bg-day-accent dark:bg-night-accent"></span>
+          <span class="text-day-secondary dark:text-night-secondary">DIGITAL EXHIBITION</span>
+        </div>
+
+        <h1 class="font-bold tracking-tighter uppercase leading-[0.88] text-day-primary dark:text-night-primary select-none mb-8">
+          <span class="block text-6xl sm:text-8xl md:text-9xl font-black clip-reveal">
+            SELECTED
+          </span>
+          <span class="block text-5xl sm:text-7xl md:text-8xl font-serif italic text-day-secondary dark:text-night-secondary -mt-2 sm:-mt-4 clip-reveal">
+            WORK<span class="text-day-accent dark:text-night-accent font-sans not-italic">.</span>
+          </span>
+        </h1>
+
+        <p class="text-lg md:text-2xl font-light text-day-secondary dark:text-night-secondary max-w-2xl leading-relaxed reveal-item border-l-2 border-day-accent dark:border-night-accent pl-6">
+          A collection of digital experiences shaped through design, development, problem solving, and attention to detail.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 px-6 md:px-16 lg:px-24 mb-12">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6 border-b border-day-border/60 dark:border-night-border/40 pb-6 reveal-item">
+        
+        <div class="font-mono text-xs uppercase tracking-widest text-day-secondary dark:text-night-secondary">
+          FILTER BY CATEGORY:
+        </div>
+
+        <div id="filter-controls" class="flex flex-wrap items-center gap-6 font-mono text-xs uppercase tracking-wider">
+          <button class="filter-btn active text-day-accent dark:text-night-accent transition-colors" data-filter="ALL">ALL [04]</button>
+          <button class="filter-btn text-day-secondary dark:text-night-secondary hover:text-day-primary dark:hover:text-night-primary transition-colors" data-filter="WEB DESIGN">WEB DESIGN</button>
+          <button class="filter-btn text-day-secondary dark:text-night-secondary hover:text-day-primary dark:hover:text-night-primary transition-colors" data-filter="UI / UX">UI / UX</button>
+          <button class="filter-btn text-day-secondary dark:text-night-secondary hover:text-day-primary dark:hover:text-night-primary transition-colors" data-filter="WORDPRESS">WORDPRESS</button>
+          <button class="filter-btn text-day-secondary dark:text-night-secondary hover:text-day-primary dark:hover:text-night-primary transition-colors" data-filter="DEVELOPMENT">DEVELOPMENT</button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 px-6 md:px-16 lg:px-24 py-8">
+      <div class="max-w-7xl mx-auto">
+        
+        <div id="project-index-list" class="project-index-container flex flex-col divide-y divide-day-border/60 dark:divide-night-border/40 border-y border-day-border/60 dark:border-night-border/40">
+          
+          </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 py-32 px-6 md:px-16 lg:px-24 border-t border-day-border/60 dark:border-night-border/40 my-20">
+      <div class="max-w-7xl mx-auto">
+        
+        <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent mb-12 reveal-item">
+          <span>02 // FEATURED SPOTLIGHT</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 space-y-8 reveal-item">
+            <div class="font-mono text-5xl font-bold text-day-accent dark:text-night-accent">
+              01
+            </div>
+
+            <div>
+              <div class="font-mono text-xs text-day-secondary dark:text-night-secondary uppercase tracking-widest mb-2">WEB DESIGN / DEVELOPMENT — 2026</div>
+              <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tighter text-day-primary dark:text-night-primary">
+                PROJECT ONE
+              </h2>
+            </div>
+
+            <p class="text-base sm:text-lg font-light text-day-secondary dark:text-night-secondary leading-relaxed border-l-2 border-day-accent dark:border-night-accent pl-6">
+              A comprehensive web design and frontend implementation designed and developed with a focus on usability, responsiveness, performance, and maintainability.
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <div class="font-mono text-xs uppercase tracking-widest text-day-primary dark:text-night-primary font-bold">
+                MY CONTRIBUTION:
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 font-mono text-xs uppercase text-day-secondary dark:text-night-secondary">
+                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-day-accent dark:bg-night-accent rounded-full"></span>Visual Direction</div>
+                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-day-accent dark:bg-night-accent rounded-full"></span>UI / UX Design</div>
+                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-day-accent dark:bg-night-accent rounded-full"></span>Frontend Engineering</div>
+                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-day-accent dark:bg-night-accent rounded-full"></span>Performance Audit</div>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <button class="open-case-study-btn px-6 py-3 bg-day-primary dark:bg-night-primary text-day-bg dark:text-night-bg font-mono text-xs uppercase tracking-widest hover:bg-day-accent dark:hover:bg-night-accent hover:text-white transition-colors duration-300 cursor-view" data-id="01">
+                EXPLORE CASE STUDY
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 reveal-item">
+            <div class="relative group overflow-hidden border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface p-4 sm:p-8 cursor-view open-case-study-btn" data-id="01">
+              <div class="aspect-[16/10] overflow-hidden bg-day-bg dark:bg-night-bg relative">
+                <div class="absolute inset-0 flex items-center justify-center p-8 bg-gradient-to-br from-day-surface to-day-bg dark:from-night-surface dark:to-night-bg">
+                  <div class="text-center space-y-3">
+                    <span class="font-mono text-xs tracking-widest text-day-accent dark:text-night-accent">[PROJECT PREVIEW FRAME]</span>
+                    <div class="text-3xl font-black uppercase text-day-primary dark:text-night-primary tracking-tighter">PROJECT ONE</div>
+                    <p class="font-mono text-[10px] text-day-secondary dark:text-night-secondary">assets/images/projects/project-01.webp</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 py-24 px-6 md:px-16 lg:px-24">
+      <div class="max-w-7xl mx-auto">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 gap-4 reveal-item">
+          <div>
+            <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent mb-2">
+              <span>03 // VISUAL GALLERY</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tight text-day-primary dark:text-night-primary">
+              PROJECT WALL
+            </h2>
+          </div>
+          <div class="font-mono text-xs text-day-secondary dark:text-night-secondary">
+            ASYMMETRIC COMPOSITION
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          
+          <div class="md:col-span-8 wall-item group border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface p-6 cursor-view open-case-study-btn reveal-item" data-id="02">
+            <div class="aspect-[16/9] bg-day-bg dark:bg-night-bg overflow-hidden relative mb-6">
+              <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                <img class="rounded" src="assets/images/chaplainhamburger.webp" alt="web design">
+              </div>
+            </div>
+            <div class="flex justify-between items-end font-mono">
+              <div>
+                <h4 class="text-lg font-bold uppercase text-day-primary dark:text-night-primary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">PROJECT TWO</h4>
+                <p class="text-xs text-day-secondary dark:text-night-secondary">WordPress / UI Design — 2026</p>
+              </div>
+              <span class="text-xs text-day-accent dark:text-night-accent">[EXPLORE]</span>
+            </div>
+          </div>
+
+          <div class="md:col-span-4 wall-item group border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface p-6 cursor-view open-case-study-btn reveal-item" data-id="03">
+            <div class="aspect-[4/5] bg-day-bg dark:bg-night-bg overflow-hidden relative mb-6">
+              <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                <img class="h-auto max-w-full object-cover rounded-lg" src="assets/images/rentgmobile.jpeg" alt="web design">
+              </div>
+            </div>
+            <div class="flex justify-between items-end font-mono">
+              <div>
+                <h4 class="text-lg font-bold uppercase text-day-primary dark:text-night-primary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">PROJECT THREE</h4>
+                <p class="text-xs text-day-secondary dark:text-night-secondary">Property Platform — 2026</p>
+              </div>
+              <span class="text-xs text-day-accent dark:text-night-accent">[EXPLORE]</span>
+            </div>
+          </div>
+
+          <div class="md:col-span-5 wall-item group border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface p-6 cursor-view open-case-study-btn reveal-item" data-id="04">
+            <div class="aspect-[1/1] bg-day-bg dark:bg-night-bg overflow-hidden relative mb-6">
+              <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                <img class="rounded" src="assets/images/durranitab.jpeg" alt="web design">
+              </div>
+            </div>
+            <div class="flex justify-between items-end font-mono">
+              <div>
+                <h4 class="text-lg font-bold uppercase text-day-primary dark:text-night-primary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">PROJECT FOUR</h4>
+                <p class="text-xs text-day-secondary dark:text-night-secondary">Business Website — 2026</p>
+              </div>
+              <span class="text-xs text-day-accent dark:text-night-accent">[EXPLORE]</span>
+            </div>
+          </div>
+
+          <div class="md:col-span-7 border border-day-border dark:border-night-border p-8 sm:p-12 flex flex-col justify-between h-full bg-day-surface/40 dark:bg-night-surface/20 reveal-item">
+            <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent mb-6">
+              [DESIGN CODE]
+            </div>
+            <blockquote class="text-2xl sm:text-4xl font-bold uppercase tracking-tight text-day-primary dark:text-night-primary leading-tight">
+              EACH DIGITAL PRODUCT IS AN OPPORTUNITY TO REDEFINE CLARITY, ELEGANCE, AND PERFORMANCE.
+            </blockquote>
+            <div class="pt-8 font-mono text-xs text-day-secondary dark:text-night-secondary">
+              MOINUDDIN // PORTFOLIO 2026
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 py-32 px-6 md:px-16 lg:px-24 bg-day-surface/30 dark:bg-night-surface/10 border-t border-day-border/60 dark:border-night-border/40">
+      <div class="max-w-6xl mx-auto">
+        
+        <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent mb-8 reveal-item">
+          <span>04 // PHILOSOPHY</span>
+        </div>
+
+        <h2 class="text-4xl sm:text-7xl font-bold uppercase tracking-tighter text-day-primary dark:text-night-primary leading-none mb-16 reveal-item">
+          I START WITH <br>
+          <span class="text-serif italic font-normal text-day-secondary dark:text-night-secondary">THE PROBLEM.</span>
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <div class="p-6 border-l-2 border-day-accent dark:border-night-accent space-y-3 reveal-item">
+            <div class="font-mono text-xs text-day-accent dark:text-night-accent">PHASE // 01</div>
+            <h3 class="font-mono text-lg font-bold uppercase text-day-primary dark:text-night-primary">UNDERSTAND</h3>
+            <p class="font-mono text-xs text-day-secondary dark:text-night-secondary leading-relaxed">Analyzing context, user needs, layout requirements, and structural bottlenecks before touching code.</p>
+          </div>
+
+          <div class="p-6 border-l-2 border-day-border dark:border-night-border space-y-3 reveal-item">
+            <div class="font-mono text-xs text-day-secondary dark:text-night-secondary">PHASE // 02</div>
+            <h3 class="font-mono text-lg font-bold uppercase text-day-primary dark:text-night-primary">DESIGN</h3>
+            <p class="font-mono text-xs text-day-secondary dark:text-night-secondary leading-relaxed">Establishing visual direction, typography scale, spatial composition, and micro-interactions.</p>
+          </div>
+
+          <div class="p-6 border-l-2 border-day-border dark:border-night-border space-y-3 reveal-item">
+            <div class="font-mono text-xs text-day-secondary dark:text-night-secondary">PHASE // 03</div>
+            <h3 class="font-mono text-lg font-bold uppercase text-day-primary dark:text-night-primary">BUILD</h3>
+            <p class="font-mono text-xs text-day-secondary dark:text-night-secondary leading-relaxed">Engineered using clean HTML5, custom Tailwind frameworks, and accessible Vanilla JavaScript.</p>
+          </div>
+
+          <div class="p-6 border-l-2 border-day-border dark:border-night-border space-y-3 reveal-item">
+            <div class="font-mono text-xs text-day-secondary dark:text-night-secondary">PHASE // 04</div>
+            <h3 class="font-mono text-lg font-bold uppercase text-day-primary dark:text-night-primary">REFINE</h3>
+            <p class="font-mono text-xs text-day-secondary dark:text-night-secondary leading-relaxed">Rigorous device testing, performance tuning, accessibility checks, and interaction polish.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 py-32 px-6 md:px-16 lg:px-24 border-t-2 border-day-primary dark:border-night-primary bg-day-surface dark:bg-night-surface">
+      <div class="max-w-5xl mx-auto text-center space-y-8">
+        
+        <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent reveal-item">
+          <span>HAVE A PROJECT?</span>
+        </div>
+
+        <h2 class="text-4xl sm:text-7xl font-bold uppercase tracking-tighter text-day-primary dark:text-night-primary leading-none reveal-item">
+          LET'S MAKE SOMETHING USEFUL.
+        </h2>
+
+        <div class="flex flex-wrap justify-center gap-6 pt-6 reveal-item">
+          <a href="contact.html" class="px-8 py-4 bg-day-primary dark:bg-night-primary text-day-bg dark:text-night-bg font-mono text-xs uppercase tracking-widest hover:bg-day-accent dark:hover:bg-night-accent hover:text-white transition-colors duration-300 cursor-open">
+            START A PROJECT
+          </a>
+          <a href="services.html" class="px-8 py-4 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-widest text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent transition-colors duration-300 cursor-open">
+            EXPLORE SERVICES
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="case-study-overlay" class="fixed inset-0 z-[80] bg-day-bg/95 dark:bg-night-bg/95 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-500 overflow-y-auto p-6 md:p-16 flex flex-col justify-between">
+    
+    <div class="flex justify-between items-center border-b border-day-border dark:border-night-border pb-6 max-w-6xl mx-auto w-full">
+      <div class="font-mono text-xs text-day-accent dark:text-night-accent">
+        <span>CASE STUDY // </span><span id="cs-number">01</span>
+      </div>
+
+      <button id="close-cs-btn" aria-label="Close Case Study" class="font-mono text-xs border border-day-border dark:border-night-border px-4 py-2 hover:border-day-accent dark:hover:border-night-accent transition-colors cursor-close">
+        CLOSE [ESC]
+      </button>
+    </div>
+
+    <div class="max-w-6xl mx-auto w-full my-auto py-12 space-y-12">
+      
+      <div class="space-y-4">
+        <div id="cs-category-year" class="font-mono text-xs uppercase text-day-secondary dark:text-night-secondary">WEB DESIGN / DEVELOPMENT — 2026</div>
+        <h2 id="cs-title" class="text-4xl sm:text-7xl font-black uppercase tracking-tighter text-day-primary dark:text-night-primary">
+          PROJECT ONE
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-day-border dark:border-night-border pt-8">
+        
+        <div class="md:col-span-7 space-y-6">
+          <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent">OVERVIEW &amp; CHALLENGE</div>
+          <p id="cs-overview" class="text-lg font-light text-day-secondary dark:text-night-secondary leading-relaxed">
+            Designed and developed with a focus on usability, responsiveness, performance, and maintainability.
+          </p>
+
+          <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent pt-4">TECHNOLOGIES &amp; TOOLS</div>
+          <div id="cs-tech" class="flex flex-wrap gap-2 font-mono text-xs">
+            <span class="px-3 py-1 border border-day-border dark:border-night-border">HTML5</span>
+            <span class="px-3 py-1 border border-day-border dark:border-night-border">Tailwind CSS</span>
+            <span class="px-3 py-1 border border-day-border dark:border-night-border">Vanilla JS</span>
+          </div>
+        </div>
+
+        <div class="md:col-span-5 space-y-6">
+          <div class="font-mono text-xs uppercase tracking-widest text-day-primary dark:text-night-primary font-bold">MY CONTRIBUTION</div>
+          <div id="cs-contributions" class="space-y-2 font-mono text-xs uppercase text-day-secondary dark:text-night-secondary">
+            </div>
+        </div>
+
+      </div>
+
+      <div class="border border-day-border dark:border-night-border bg-day-surface dark:bg-night-surface p-6 sm:p-12 text-center">
+        <div class="aspect-[16/9] bg-day-bg dark:bg-night-bg flex items-center justify-center p-8">
+          <div class="space-y-2">
+            <span id="cs-image-path" class="font-mono text-xs text-day-accent dark:text-night-accent">assets/images/projects/project-01.webp</span>
+            <div class="font-mono text-xs text-day-secondary dark:text-night-secondary">[FULL RESOLUTION CASE STUDY PREVIEW FRAME]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center border-t border-day-border dark:border-night-border pt-6">
+        <span class="font-mono text-xs text-day-secondary dark:text-night-secondary">MOINUDDIN PORTFOLIO ARCHIVE</span>
+        <a id="cs-link" href="#" target="_blank" rel="noopener" class="font-mono text-xs uppercase border border-day-accent dark:border-night-accent px-6 py-3 text-day-accent dark:text-night-accent hover:bg-day-accent dark:hover:bg-night-accent hover:text-white transition-colors cursor-open">
+          VISIT LIVE PROJECT ↗
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="page-transition" class="fixed inset-0 z-[90] bg-day-primary dark:bg-night-primary translate-y-full transition-transform duration-500 pointer-events-none"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* -------------------------------------------------------------
+         1. PROJECT DATA DICTIONARY
+      ------------------------------------------------------------- */
+      const projectsData = [
+        {
+          id: '01',
+          title: 'PROJECT ONE',
+          category: 'WEB DESIGN',
+          year: '2026',
+          image: 'assets/images/chaplainhamburger.webp',
+          overview: 'A full design system and frontend build engineered for rapid load speed, responsive elegance, and clean architecture.',
+          contributions: ['Visual Direction', 'UI / UX Design', 'Frontend Development', 'Responsive Architecture'],
+          technologies: ['HTML5', 'Tailwind CSS', 'Vanilla JS', 'Spatial CSS'],
+          url: '#'
+        },
+        {
+          id: '02',
+          title: 'PROJECT TWO',
+          category: 'WORDPRESS',
+          year: '2026',
+          image: 'assets/images/rentglob.webp',
+          overview: 'Custom WordPress theme developed for flexible content management, tailored Gutenberg blocks, and performance optimization.',
+          contributions: ['Custom WordPress Theme', 'UI / UX Design', 'PHP / Architecture', 'Content Strategy'],
+          technologies: ['WordPress', 'PHP', 'Tailwind CSS', 'JavaScript'],
+          url: '#'
+        },
+        {
+          id: '03',
+          title: 'PROJECT THREE',
+          category: 'UI / UX',
+          year: '2026',
+          image: 'assets/images/durrani.webp',
+          overview: 'Property platform interface designed with emphasis on spatial clarity, intuitive navigation, and responsive desktop/mobile flows.',
+          contributions: ['User Experience Mapping', 'Interface Design', 'Prototyping', 'Component System'],
+          technologies: ['Figma', 'UI Systems', 'Responsive Logic'],
+          url: '#'
+        },
+        {
+          id: '04',
+          title: 'PROJECT FOUR',
+          category: 'Coming Soon',
+          year: '2026',
+          image: 'assets/images/comingsoon.jpg',
+          overview: 'High-performance corporate web interface built with a focus on SEO foundational code, speed, and cross-browser reliability.',
+          contributions: ['Frontend Engineering', 'SEO Optimization', 'Performance Tuning', 'Accessibility Audit'],
+          technologies: ['HTML5', 'CSS Motion', 'Vanilla JS', 'Performance Tools'],
+          url: '#'
+        }
+      ];
+
+      /* -------------------------------------------------------------
+         2. DAY / NIGHT THEME SYSTEM
+      ------------------------------------------------------------- */
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const htmlElement = document.documentElement;
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      if (savedTheme === 'dark') {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        if (htmlElement.classList.contains('dark')) {
+          htmlElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          htmlElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      /* -------------------------------------------------------------
+         3. OVERLAY MENU TOGGLE
+      ------------------------------------------------------------- */
+      const menuToggleBtn = document.getElementById('menu-toggle');
+      const menuText = document.getElementById('menu-text');
+      const navOverlay = document.getElementById('nav-overlay');
+      let isMenuOpen = false;
+
+      menuToggleBtn.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          navOverlay.classList.remove('opacity-0', 'pointer-events-none');
+          menuText.textContent = 'CLOSE';
+        } else {
+          navOverlay.classList.add('opacity-0', 'pointer-events-none');
+          menuText.textContent = 'MENU';
+        }
+      });
+
+      /* -------------------------------------------------------------
+         4. CUSTOM CURSOR & HOVER PREVIEW ENGINE
+      ------------------------------------------------------------- */
+      const cursorDot = document.getElementById('cursor-dot');
+      const cursorText = document.getElementById('cursor-text');
+      const hoverPreview = document.getElementById('hover-preview-container');
+      const hoverImg = document.getElementById('hover-preview-img');
+
+      let mouseX = 0, mouseY = 0;
+      let cursorX = 0, cursorY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        if (hoverPreview.classList.contains('active')) {
+          hoverPreview.style.left = `${mouseX}px`;
+          hoverPreview.style.top = `${mouseY}px`;
+        }
+      });
+
+      function renderCursor() {
+        cursorX += (mouseX - cursorX) * 0.2;
+        cursorY += (mouseY - cursorY) * 0.2;
+
+        cursorDot.style.left = `${cursorX}px`;
+        cursorDot.style.top = `${cursorY}px`;
+
+        requestAnimationFrame(renderCursor);
+      }
+      requestAnimationFrame(renderCursor);
+
+      function bindCursorEvents() {
+        document.querySelectorAll('.cursor-open, a, button').forEach(element => {
+          element.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('expand');
+            cursorText.textContent = 'OPEN';
+          });
+          element.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('expand');
+            cursorText.textContent = '';
+          });
+        });
+
+        document.querySelectorAll('.cursor-view').forEach(element => {
+          element.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('expand');
+            cursorText.textContent = 'VIEW';
+          });
+          element.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('expand');
+            cursorText.textContent = '';
+          });
+        });
+
+        document.querySelectorAll('.cursor-close').forEach(element => {
+          element.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('expand');
+            cursorText.textContent = 'CLOSE';
+          });
+          element.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('expand');
+            cursorText.textContent = '';
+          });
+        });
+      }
+
+      /* -------------------------------------------------------------
+         5. RENDER PROJECT INDEX LIST
+      ------------------------------------------------------------- */
+      const projectIndexContainer = document.getElementById('project-index-list');
+
+      function renderProjectIndex(filter = 'ALL') {
+        projectIndexContainer.innerHTML = '';
+
+        const filtered = filter === 'ALL' 
+          ? projectsData 
+          : projectsData.filter(p => p.category.toUpperCase().includes(filter));
+
+        filtered.forEach((project) => {
+          const row = document.createElement('div');
+          row.className = 'project-row group py-8 sm:py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between cursor-view gap-4 open-case-study-btn';
+          row.setAttribute('data-id', project.id);
+          row.setAttribute('data-img', project.image);
+
+          row.innerHTML = `
+            <div class="flex items-baseline gap-6 md:gap-12">
+              <span class="font-mono text-sm sm:text-lg font-bold text-day-accent dark:text-night-accent">${project.id}</span>
+              <div>
+                <h3 class="text-2xl sm:text-5xl font-black uppercase tracking-tighter text-day-primary dark:text-night-primary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">
+                  ${project.title}
+                </h3>
+                <p class="font-mono text-xs text-day-secondary dark:text-night-secondary mt-1 sm:hidden">
+                  ${project.category} — ${project.year}
+                </p>
+              </div>
+            </div>
+
+            <div class="hidden sm:flex items-center gap-12 font-mono text-xs">
+              <span class="text-day-secondary dark:text-night-secondary uppercase tracking-wider">${project.category}</span>
+              <span class="text-day-secondary dark:text-night-secondary">${project.year}</span>
+              <span class="text-day-accent dark:text-night-accent font-bold group-hover:translate-x-2 transition-transform">→</span>
+            </div>
+          `;
+
+          // Mouse Hover Image Preview trigger
+          row.addEventListener('mouseenter', () => {
+            hoverImg.src = project.image;
+            hoverPreview.classList.add('active');
+          });
+
+          row.addEventListener('mouseleave', () => {
+            hoverPreview.classList.remove('active');
+          });
+
+          projectIndexContainer.appendChild(row);
+        });
+
+        bindCursorEvents();
+        bindCaseStudyTriggers();
+      }
+
+      /* -------------------------------------------------------------
+         6. PROJECT FILTERING ENGINE
+      ------------------------------------------------------------- */
+      const filterBtns = document.querySelectorAll('.filter-btn');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('active', 'text-day-accent', 'dark:text-night-accent');
+            b.classList.add('text-day-secondary', 'dark:text-night-secondary');
+          });
+
+          btn.classList.add('active', 'text-day-accent', 'dark:text-night-accent');
+          btn.classList.remove('text-day-secondary', 'dark:text-night-secondary');
+
+          const category = btn.getAttribute('data-filter');
+          renderProjectIndex(category);
+        });
+      });
+
+      /* -------------------------------------------------------------
+         7. CASE STUDY OVERLAY SYSTEM
+      ------------------------------------------------------------- */
+      const csOverlay = document.getElementById('case-study-overlay');
+      const closeCsBtn = document.getElementById('close-cs-btn');
+      
+      const csNumber = document.getElementById('cs-number');
+      const csCategoryYear = document.getElementById('cs-category-year');
+      const csTitle = document.getElementById('cs-title');
+      const csOverview = document.getElementById('cs-overview');
+      const csTech = document.getElementById('cs-tech');
+      const csContributions = document.getElementById('cs-contributions');
+      const csImagePath = document.getElementById('cs-image-path');
+      const csLink = document.getElementById('cs-link');
+
+      function openCaseStudy(id) {
+        const project = projectsData.find(p => p.id === id);
+        if (!project) return;
+
+        csNumber.textContent = project.id;
+        csCategoryYear.textContent = `${project.category} — ${project.year}`;
+        csTitle.textContent = project.title;
+        csOverview.textContent = project.overview;
+        csImagePath.textContent = project.image;
+        csLink.setAttribute('href', project.url);
+
+        // Tech Pills
+        csTech.innerHTML = '';
+        project.technologies.forEach(tech => {
+          const pill = document.createElement('span');
+          pill.className = 'px-3 py-1 border border-day-border dark:border-night-border text-day-primary dark:text-night-primary';
+          pill.textContent = tech;
+          csTech.appendChild(pill);
+        });
+
+        // Contribution List
+        csContributions.innerHTML = '';
+        project.contributions.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'flex items-center gap-2';
+          div.innerHTML = `<span class="w-1.5 h-1.5 bg-day-accent dark:bg-night-accent rounded-full"></span><span>${item}</span>`;
+          csContributions.appendChild(div);
+        });
+
+        csOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeCaseStudy() {
+        csOverlay.classList.add('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = 'auto';
+      }
+
+      function bindCaseStudyTriggers() {
+        document.querySelectorAll('.open-case-study-btn').forEach(trigger => {
+          trigger.addEventListener('click', (e) => {
+            const id = trigger.getAttribute('data-id');
+            if (id) openCaseStudy(id);
+          });
+        });
+      }
+
+      closeCsBtn.addEventListener('click', closeCaseStudy);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeCaseStudy();
+      });
+
+      /* -------------------------------------------------------------
+         8. INITIALIZE RENDER
+      ------------------------------------------------------------- */
+      renderProjectIndex('ALL');
+
+      /* -------------------------------------------------------------
+         9. SCROLL REVEAL (INTERSECTION OBSERVER)
+      ------------------------------------------------------------- */
+      const revealItems = document.querySelectorAll('.reveal-item, .clip-reveal');
+      
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, observerOptions);
+
+      revealItems.forEach(item => revealObserver.observe(item));
+
+      /* -------------------------------------------------------------
+         10. SPATIAL MOUSE PARALLAX
+      ------------------------------------------------------------- */
+      const parallaxElems = document.querySelectorAll('.parallax-elem');
+      let targetX = 0, targetY = 0;
+      let currentX = 0, currentY = 0;
+
+      const windowHalfX = window.innerWidth / 2;
+      const windowHalfY = window.innerHeight / 2;
+
+      window.addEventListener('mousemove', (e) => {
+        targetX = (e.clientX - windowHalfX) / windowHalfX;
+        targetY = (e.clientY - windowHalfY) / windowHalfY;
+      });
+
+      function animateParallax() {
+        currentX += (targetX - currentX) * 0.05;
+        currentY += (targetY - currentY) * 0.05;
+
+        parallaxElems.forEach(elem => {
+          const depth = parseFloat(elem.getAttribute('data-depth')) || 0.04;
+          const moveX = currentX * (depth * 250);
+          const moveY = currentY * (depth * 250);
+          elem.style.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`;
+        });
+
+        requestAnimationFrame(animateParallax);
+      }
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (window.innerWidth > 768 && !prefersReducedMotion) {
+        requestAnimationFrame(animateParallax);
+      }
+
+      /* -------------------------------------------------------------
+         11. PAGE TRANSITION LEAVE
+      ------------------------------------------------------------- */
+      const transitionOverlay = document.getElementById('page-transition');
+      const navLinks = document.querySelectorAll('a[href$=".html"]');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const targetUrl = link.getAttribute('href');
+          
+          if (targetUrl && !targetUrl.startsWith('#') && !targetUrl.startsWith('http')) {
+            e.preventDefault();
+            transitionOverlay.classList.remove('translate-y-full');
+            
+            setTimeout(() => {
+              window.location.href = targetUrl;
+            }, 500);
+          }
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>

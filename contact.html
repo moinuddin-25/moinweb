@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Moinuddin — Contact | Web Designer & Developer</title>
+  <meta name="description" content="Let's create something. Connect with Moinuddin for web design, UI/UX, and frontend engineering projects.">
+  <link rel="canonical" href="https://moinuddin.com/contact.html">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://moinuddin.com/contact.html">
+  <meta property="og:title" content="Moinuddin — Contact | Web Designer & Developer">
+  <meta property="og:description" content="Have an idea, a redesign, or a digital experience in mind? Let's build something worth talking about.">
+  <meta property="og:image" content="assets/images/contact/og-image.webp">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            day: {
+              bg: '#F4F5F7',
+              primary: '#0B0D10',
+              secondary: '#667085',
+              surface: '#FFFFFF',
+              accent: '#FF5C35',
+              border: '#D9DDE3'
+            },
+            night: {
+              bg: '#08090C',
+              primary: '#F5F7FA',
+              secondary: '#98A2B3',
+              surface: '#111318',
+              accent: '#FF6B45',
+              border: '#242832'
+            }
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['Cinzel', 'Playfair Display', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'Courier New', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Variables & Theme Foundations */
+    :root {
+      --bg: #F4F5F7;
+      --primary: #0B0D10;
+      --secondary: #667085;
+      --accent: #FF5C35;
+      --surface: #FFFFFF;
+      --border: #D9DDE3;
+      --grid: rgba(11, 13, 16, 0.04);
+    }
+
+    .dark {
+      --bg: #08090C;
+      --primary: #F5F7FA;
+      --secondary: #98A2B3;
+      --accent: #FF6B45;
+      --surface: #111318;
+      --border: #242832;
+      --grid: rgba(245, 247, 250, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      cursor: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--primary);
+      transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-x: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Spatial Canvas Baseline */
+    .viewport-canvas {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+
+    .layer-bg { transform: translateZ(-60px) scale(1.05); }
+    .layer-mid { transform: translateZ(0px); }
+    .layer-fore { transform: translateZ(40px); }
+
+    /* Fine Grid Overlay */
+    .bg-grid-pattern {
+      background-image: 
+        linear-gradient(to right, var(--grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+      background-size: 80px 80px;
+      background-attachment: fixed;
+    }
+
+    /* Custom Cursor */
+    #cursor-dot {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      width: 12px;
+      height: 12px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  height 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  background-color 0.3s ease, 
+                  border-radius 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      mix-blend-mode: difference;
+    }
+
+    #cursor-dot span {
+      opacity: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #000;
+      transition: opacity 0.2s ease;
+    }
+
+    #cursor-dot.expand {
+      width: 64px;
+      height: 64px;
+      background-color: #FFFFFF;
+      mix-blend-mode: normal;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    #cursor-dot.expand span {
+      opacity: 1;
+    }
+
+    /* Scroll Reveal & Animations */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .clip-reveal {
+      clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+      transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: clip-path;
+    }
+    .clip-reveal.revealed {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* Form Fields Styling */
+    .input-underline {
+      position: relative;
+    }
+
+    .input-field {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 0;
+      font-size: 1.125rem;
+      color: var(--primary);
+      transition: border-color 0.4s ease;
+      outline: none;
+      border-radius: 0;
+    }
+
+    .input-field:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    .focus-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .input-field:focus ~ .focus-line {
+      width: 100%;
+    }
+
+    .field-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      transition: color 0.3s ease;
+    }
+
+    .input-underline:focus-within .field-label {
+      color: var(--accent);
+    }
+
+    /* Custom Project Selector Tags */
+    .tag-btn {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tag-btn.selected {
+      border-color: var(--accent) !important;
+      color: var(--accent) !important;
+      background-color: rgba(255, 92, 53, 0.05);
+      transform: scale(1.02);
+    }
+
+    /* 3D Decorative Floating Ring/Crosshair */
+    .floating-ring {
+      width: 180px;
+      height: 180px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      position: absolute;
+      pointer-events: none;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
+    }
+
+    .floating-crosshair {
+      position: absolute;
+      pointer-events: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--secondary);
+      opacity: 0.4;
+    }
+
+    /* Accessibility / Motion Fallback */
+    @media (prefers-reduced-motion: reduce) {
+      *, #cursor-dot {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+      * { cursor: auto !important; }
+      #cursor-dot { display: none !important; }
+      .reveal-item { opacity: 1 !important; transform: none !important; }
+      .clip-reveal { clip-path: none !important; }
+    }
+
+    @media (pointer: coarse) {
+      #cursor-dot { display: none !important; }
+      * { cursor: auto !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-day-accent selection:text-white dark:selection:bg-night-accent dark:selection:text-black">
+
+  <div id="cursor-dot"><span id="cursor-text"></span></div>
+
+  <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference">
+    <a href="index.html" class="font-mono text-xs font-bold tracking-widest text-white hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+      MOINUDDIN.COM
+    </a>
+
+    <div class="hidden sm:flex items-center gap-2 px-3 py-1 border border-white/20 rounded-full text-[10px] font-mono tracking-widest uppercase text-white/80 backdrop-blur-md">
+      <span>CONTACT / 06</span>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" aria-label="Toggle Theme" class="flex items-center gap-2 cursor-pointer border border-white/20 px-3 py-1.5 rounded-full backdrop-blur-md hover:border-white transition-all duration-300">
+        <span class="text-[10px] font-mono uppercase tracking-widest text-white">MODE</span>
+        <div class="w-2.5 h-2.5 rounded-full border border-white flex items-center justify-center p-0.5">
+          <div id="theme-dot" class="w-full h-full bg-white rounded-full transition-transform duration-300"></div>
+        </div>
+      </button>
+
+      <button id="menu-toggle" aria-label="Toggle Navigation Menu" class="flex items-center gap-2 cursor-pointer border border-white/20 px-4 py-1.5 rounded-full backdrop-blur-md hover:border-white transition-all duration-300">
+        <span id="menu-text" class="text-[10px] font-mono uppercase tracking-widest text-white">MENU</span>
+        <span class="w-2 h-2 rounded-full bg-day-accent dark:bg-night-accent"></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="nav-overlay" class="fixed inset-0 z-40 bg-day-bg dark:bg-night-bg opacity-0 pointer-events-none transition-opacity duration-500 flex flex-col justify-between p-8 md:p-16">
+    <div class="flex justify-between items-center font-mono text-xs text-day-secondary dark:text-night-secondary">
+      <span>SPATIAL NAVIGATION</span>
+      <span>INDEX / 2026</span>
+    </div>
+
+    <nav aria-label="Overlay Navigation" class="my-auto">
+      <ul class="flex flex-col gap-4 md:gap-6 font-mono">
+        <li>
+          <a href="index.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">01</span>
+            <span>HOME</span>
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">02</span>
+            <span>ABOUT</span>
+          </a>
+        </li>
+        <li>
+          <a href="services.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">03</span>
+            <span>SERVICES</span>
+          </a>
+        </li>
+        <li>
+          <a href="projects.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">04</span>
+            <span>PROJECTS</span>
+          </a>
+        </li>
+        <li>
+          <a href="recommendations.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors duration-300 cursor-open">
+            <span class="text-xs font-mono text-day-secondary dark:text-night-secondary group-hover:text-day-accent dark:group-hover:text-night-accent transition-colors">05</span>
+            <span>RECOMMENDATIONS</span>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="group flex items-center gap-4 text-3xl md:text-6xl font-bold tracking-tighter uppercase text-day-accent dark:text-night-accent cursor-open">
+            <span class="text-xs font-mono transition-colors">06</span>
+            <span>CONTACT</span>
+            <span class="text-xs font-mono border border-day-accent dark:border-night-accent px-2 py-0.5 rounded-full">CURRENT</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="border-t border-day-border dark:border-night-border pt-4 font-mono text-[10px] tracking-widest text-day-secondary dark:text-night-secondary uppercase flex justify-between">
+      <span>MOINUDDIN.COM</span>
+      <span>ALL RIGHTS RESERVED</span>
+    </div>
+  </div>
+
+  <main id="composition-wrapper" class="relative w-full min-h-screen viewport-canvas bg-grid-pattern pt-28 pb-16">
+
+    <div class="layer-bg fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div class="floating-ring top-1/4 right-12 parallax-elem" data-depth="0.03"></div>
+      <div class="floating-crosshair top-1/3 left-16 parallax-elem" data-depth="0.02">+ CONTACT_STAGE // 06</div>
+      <div class="floating-crosshair bottom-1/4 right-1/4 parallax-elem" data-depth="0.05">[3D_FORM_CANVAS]</div>
+    </div>
+
+    <section class="relative z-10 min-h-[50vh] flex flex-col justify-center px-6 md:px-16 lg:px-24 mb-16">
+      <div class="max-w-7xl mx-auto w-full">
+        
+        <div class="inline-flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent mb-6 reveal-item">
+          <span>CONTACT / 06</span>
+          <span class="w-8 h-[1px] bg-day-accent dark:bg-night-accent"></span>
+          <span>START A CONVERSATION</span>
+        </div>
+
+        <h1 class="font-bold tracking-tighter uppercase leading-[0.85] text-day-primary dark:text-night-primary select-none mb-8">
+          <span class="block text-6xl sm:text-8xl md:text-9xl font-black clip-reveal">
+            LET'S
+          </span>
+          <span class="block text-6xl sm:text-8xl md:text-9xl font-black clip-reveal">
+            CREATE
+          </span>
+          <span class="block text-5xl sm:text-7xl md:text-8xl font-serif italic text-day-secondary dark:text-night-secondary -mt-2 sm:-mt-4 clip-reveal">
+            SOMETHING<span class="text-day-accent dark:text-night-accent font-sans not-italic">.</span>
+          </span>
+        </h1>
+
+        <p class="text-lg md:text-2xl font-light text-day-secondary dark:text-night-secondary max-w-2xl leading-relaxed reveal-item border-l-2 border-day-accent dark:border-night-accent pl-6">
+          “Have an idea, a redesign, or a digital experience in mind?”
+        </p>
+
+      </div>
+    </section>
+
+    <section id="contact-form-section" class="relative z-10 px-6 md:px-16 lg:px-24 py-12 mb-24">
+      <div class="max-w-5xl mx-auto border border-day-border dark:border-night-border bg-day-surface/80 dark:bg-night-surface/80 backdrop-blur-md p-8 md:p-16 space-y-12 reveal-item">
+        
+        <div class="flex justify-between items-center border-b border-day-border/60 dark:border-night-border/40 pb-6">
+          <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent">
+            01 // PROJECT INQUIRY FORM
+          </div>
+          <div id="availability-status" class="font-mono text-[10px] uppercase border border-day-accent/40 dark:border-night-accent/40 text-day-accent dark:text-night-accent px-3 py-1 rounded-full">
+            </div>
+        </div>
+
+        <form id="contact-form" class="space-y-12" novalidate>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="input-underline">
+              <label for="input-name" class="field-label block mb-1">YOUR NAME *</label>
+              <input type="text" id="input-name" name="name" class="input-field cursor-send" placeholder="Jane Doe" required autocomplete="name">
+              <div class="focus-line"></div>
+              <span id="error-name" class="font-mono text-[10px] text-red-500 mt-1 hidden block">Please enter your name.</span>
+            </div>
+
+            <div class="input-underline">
+              <label for="input-email" class="field-label block mb-1">YOUR EMAIL *</label>
+              <input type="email" id="input-email" name="email" class="input-field cursor-send" placeholder="jane@example.com" required autocomplete="email">
+              <div class="focus-line"></div>
+              <span id="error-email" class="font-mono text-[10px] text-red-500 mt-1 hidden block">Please enter a valid email address.</span>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <span class="field-label block">SELECT PROJECT TYPE *</span>
+            <div id="project-type-container" class="flex flex-wrap gap-3">
+              <button type="button" class="tag-btn tag-option px-4 py-2 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-wider text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent cursor-send" data-value="WEB DESIGN">WEB DESIGN</button>
+              <button type="button" class="tag-btn tag-option px-4 py-2 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-wider text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent cursor-send" data-value="UI / UX">UI / UX</button>
+              <button type="button" class="tag-btn tag-option px-4 py-2 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-wider text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent cursor-send" data-value="WORDPRESS">WORDPRESS</button>
+              <button type="button" class="tag-btn tag-option px-4 py-2 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-wider text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent cursor-send" data-value="FRONTEND">FRONTEND</button>
+              <button type="button" class="tag-btn tag-option px-4 py-2 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-wider text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent cursor-send" data-value="REDESIGN">REDESIGN</button>
+              <button type="button" class="tag-btn tag-option px-4 py-2 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-wider text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent cursor-send" data-value="SEO / PERFORMANCE">SEO / PERFORMANCE</button>
+              <button type="button" class="tag-btn tag-option px-4 py-2 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-wider text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent cursor-send" data-value="OTHER">OTHER</button>
+            </div>
+            <input type="hidden" id="input-project-type" name="project_type" required>
+            <span id="error-project-type" class="font-mono text-[10px] text-red-500 mt-1 hidden block">Please select a project type.</span>
+          </div>
+
+          <div class="input-underline">
+            <label for="input-budget" class="field-label block mb-1">BUDGET RANGE (OPTIONAL)</label>
+            <input type="text" id="input-budget" name="budget" class="input-field cursor-send" placeholder="$5k - $10k / Flexible">
+            <div class="focus-line"></div>
+          </div>
+
+          <div class="input-underline">
+            <label for="input-message" class="field-label block mb-1">TELL ME ABOUT THE PROJECT *</label>
+            <textarea id="input-message" name="message" rows="4" class="input-field cursor-send resize-none" placeholder="Share scope, goals, timeline, or links..." required></textarea>
+            <div class="focus-line"></div>
+            <span id="error-message" class="font-mono text-[10px] text-red-500 mt-1 hidden block">Please share project details.</span>
+          </div>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-6">
+            <button type="submit" id="submit-btn" class="px-10 py-5 bg-day-primary dark:bg-night-primary text-day-bg dark:text-night-bg font-mono text-xs uppercase tracking-widest hover:bg-day-accent dark:hover:bg-night-accent hover:text-white transition-colors duration-300 cursor-send flex items-center justify-center gap-3">
+              <span>SEND MESSAGE</span>
+              <span>→</span>
+            </button>
+
+            <span class="font-mono text-[10px] text-day-secondary dark:text-night-secondary uppercase">
+              CONFIDENTIAL & DIRECT INQUIRY
+            </span>
+          </div>
+
+        </form>
+
+        <div id="form-success-message" class="hidden space-y-6 p-8 border border-day-accent dark:border-night-accent bg-day-accent/5 dark:bg-night-accent/5">
+          <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent font-bold">
+            MESSAGE READY.
+          </div>
+          <p id="success-description-text" class="text-lg text-day-primary dark:text-night-primary font-light">
+            </p>
+          <button type="button" id="reset-form-btn" class="px-6 py-3 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-widest hover:border-day-accent dark:hover:border-night-accent transition-colors cursor-send">
+            SEND ANOTHER INQUIRY
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 px-6 md:px-16 lg:px-24 py-16 mb-24">
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-day-border/60 dark:border-night-border/40 pt-16">
+        
+        <div class="space-y-6 reveal-item">
+          <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent">
+            02 // DIRECT CHANNELS
+          </div>
+          
+          <div class="space-y-4 font-mono text-sm">
+            <div>
+              <span class="text-xs text-day-secondary dark:text-night-secondary block uppercase mb-1">DIRECT EMAIL</span>
+              <a id="display-email-link" href="#" class="text-lg font-bold text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors cursor-open">
+                </a>
+            </div>
+
+            <div>
+              <span class="text-xs text-day-secondary dark:text-night-secondary block uppercase mb-1">LINKEDIN PROFILE</span>
+              <a id="display-linkedin-link" href="#" target="_blank" rel="noopener" class="text-lg font-bold text-day-primary dark:text-night-primary hover:text-day-accent dark:hover:text-night-accent transition-colors cursor-open">
+                </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6 reveal-item">
+          <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent">
+            03 // CURRENT STATUS
+          </div>
+
+          <div class="space-y-2">
+            <h2 id="display-status-label" class="text-2xl sm:text-3xl font-bold uppercase text-day-primary dark:text-night-primary tracking-tight">
+              </h2>
+            <p class="font-mono text-xs text-day-secondary dark:text-night-secondary leading-relaxed">
+              Accepting inquiries for upcoming quarters. Turnaround times and scheduling depend on scope depth.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 py-24 px-6 md:px-16 lg:px-24 border-t border-b border-day-border/60 dark:border-night-border/40 bg-day-surface/30 dark:bg-night-surface/20 my-20">
+      <div class="max-w-5xl mx-auto space-y-8 text-center sm:text-left reveal-item">
+        
+        <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent">
+          04 // COLLABORATION PHILOSOPHY
+        </div>
+
+        <h2 class="text-3xl sm:text-6xl font-bold uppercase tracking-tighter text-day-primary dark:text-night-primary leading-tight">
+          GOOD PROJECTS <br>
+          <span class="font-serif italic font-normal text-day-secondary dark:text-night-secondary">START WITH</span> <br>
+          GOOD CONVERSATIONS.
+        </h2>
+
+        <p class="text-lg sm:text-xl font-light text-day-secondary dark:text-night-secondary max-w-2xl leading-relaxed">
+          “Tell me what you're building, what needs improving, or what you want to explore.”
+        </p>
+
+      </div>
+    </section>
+
+    <section class="relative z-10 py-32 px-6 md:px-16 lg:px-24 border-t-2 border-day-primary dark:border-night-primary bg-day-surface dark:bg-night-surface">
+      <div class="max-w-5xl mx-auto text-center space-y-10">
+        
+        <div class="font-mono text-xs uppercase tracking-widest text-day-accent dark:text-night-accent reveal-item">
+          05 // THE FINAL SCENE
+        </div>
+
+        <h2 class="text-5xl sm:text-8xl md:text-9xl font-black uppercase tracking-tighter text-day-primary dark:text-night-primary leading-none reveal-item">
+          YOUR IDEA. <br>
+          <span class="font-serif italic font-normal text-day-secondary dark:text-night-secondary">MY CRAFT.</span>
+        </h2>
+
+        <p class="font-mono text-sm tracking-widest uppercase text-day-accent dark:text-night-accent reveal-item">
+          LET'S BUILD IT.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6 pt-6 reveal-item">
+          <button id="cta-start-convo" class="px-8 py-4 bg-day-primary dark:bg-night-primary text-day-bg dark:text-night-bg font-mono text-xs uppercase tracking-widest hover:bg-day-accent dark:hover:bg-night-accent hover:text-white transition-colors duration-300 cursor-send">
+            START A CONVERSATION →
+          </button>
+          <a href="projects.html" class="px-8 py-4 border border-day-border dark:border-night-border font-mono text-xs uppercase tracking-widest text-day-primary dark:text-night-primary hover:border-day-accent dark:hover:border-night-accent transition-colors duration-300 cursor-open">
+            BACK TO PROJECTS →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="page-transition" class="fixed inset-0 z-[90] bg-day-primary dark:bg-night-primary translate-y-full transition-transform duration-500 pointer-events-none"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* -------------------------------------------------------------
+         1. CONFIGURABLE PLACEHOLDERS (EASY REPLACEMENT)
+      ------------------------------------------------------------- */
+      // IMPORTANT: Keep your Telegram Bot Token ONLY on your serverless endpoint.
+      // GitHub Pages is static, so this URL should point to a Cloudflare Worker / similar endpoint.
+      const FORM_ENDPOINT = "https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev";
+      const CONFIG_EMAIL = "hey.mainuddin@gmail.com";
+      const CONFIG_LINKEDIN = "https://www.linkedin.com/in/moinuddin/";
+      const STATUS_LABEL = "AVAILABLE FOR SELECTED PROJECTS";
+
+      /* Inject Configuration Values into HTML */
+      const displayEmailLink = document.getElementById('display-email-link');
+      const displayLinkedinLink = document.getElementById('display-linkedin-link');
+      const displayStatusLabel = document.getElementById('display-status-label');
+      const availabilityStatus = document.getElementById('availability-status');
+
+      if (displayEmailLink) {
+        displayEmailLink.textContent = CONFIG_EMAIL;
+        displayEmailLink.setAttribute('href', CONFIG_EMAIL.includes('@') ? `mailto:${CONFIG_EMAIL}` : '#');
+      }
+
+      if (displayLinkedinLink) {
+        displayLinkedinLink.textContent = CONFIG_LINKEDIN.includes('linkedin.com') && !CONFIG_LINKEDIN.endsWith('/') ? 'LINKEDIN / PROFILE' : 'LINKEDIN / ADD YOUR PROFILE';
+        displayLinkedinLink.setAttribute('href', CONFIG_LINKEDIN);
+      }
+
+      if (displayStatusLabel) {
+        displayStatusLabel.textContent = STATUS_LABEL;
+      }
+
+      if (availabilityStatus) {
+        availabilityStatus.textContent = STATUS_LABEL;
+      }
+
+      /* -------------------------------------------------------------
+         2. DAY / NIGHT THEME SYSTEM
+      ------------------------------------------------------------- */
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const htmlElement = document.documentElement;
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      if (savedTheme === 'dark') {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        if (htmlElement.classList.contains('dark')) {
+          htmlElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          htmlElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      /* -------------------------------------------------------------
+         3. OVERLAY MENU TOGGLE
+      ------------------------------------------------------------- */
+      const menuToggleBtn = document.getElementById('menu-toggle');
+      const menuText = document.getElementById('menu-text');
+      const navOverlay = document.getElementById('nav-overlay');
+      let isMenuOpen = false;
+
+      menuToggleBtn.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          navOverlay.classList.remove('opacity-0', 'pointer-events-none');
+          menuText.textContent = 'CLOSE';
+        } else {
+          navOverlay.classList.add('opacity-0', 'pointer-events-none');
+          menuText.textContent = 'MENU';
+        }
+      });
+
+      /* -------------------------------------------------------------
+         4. CUSTOM CURSOR ENGINE
+      ------------------------------------------------------------- */
+      const cursorDot = document.getElementById('cursor-dot');
+      const cursorText = document.getElementById('cursor-text');
+
+      let mouseX = 0, mouseY = 0;
+      let cursorX = 0, cursorY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function renderCursor() {
+        cursorX += (mouseX - cursorX) * 0.2;
+        cursorY += (mouseY - cursorY) * 0.2;
+
+        cursorDot.style.left = `${cursorX}px`;
+        cursorDot.style.top = `${cursorY}px`;
+
+        requestAnimationFrame(renderCursor);
+      }
+      requestAnimationFrame(renderCursor);
+
+      function bindCursorEvents() {
+        document.querySelectorAll('.cursor-open, a').forEach(element => {
+          element.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('expand');
+            cursorText.textContent = 'OPEN';
+          });
+          element.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('expand');
+            cursorText.textContent = '';
+          });
+        });
+
+        document.querySelectorAll('.cursor-send, button, input, textarea').forEach(element => {
+          element.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('expand');
+            cursorText.textContent = 'SEND';
+          });
+          element.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('expand');
+            cursorText.textContent = '';
+          });
+        });
+      }
+
+      bindCursorEvents();
+
+      /* -------------------------------------------------------------
+         5. PROJECT TYPE SELECTOR INTERACTION
+      ------------------------------------------------------------- */
+      const tagButtons = document.querySelectorAll('.tag-option');
+      const hiddenProjectTypeInput = document.getElementById('input-project-type');
+      const errorProjectType = document.getElementById('error-project-type');
+
+      tagButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tagButtons.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          hiddenProjectTypeInput.value = btn.getAttribute('data-value');
+          if (errorProjectType) errorProjectType.classList.add('hidden');
+        });
+      });
+
+      /* -------------------------------------------------------------
+         6. FORM VALIDATION & SUBMISSION HANDLER
+      ------------------------------------------------------------- */
+      const contactForm = document.getElementById('contact-form');
+      const formSuccessMessage = document.getElementById('form-success-message');
+      const successDescriptionText = document.getElementById('success-description-text');
+      const resetFormBtn = document.getElementById('reset-form-btn');
+
+      const inputName = document.getElementById('input-name');
+      const inputEmail = document.getElementById('input-email');
+      const inputMessage = document.getElementById('input-message');
+
+      const errorName = document.getElementById('error-name');
+      const errorEmail = document.getElementById('error-email');
+      const errorMessage = document.getElementById('error-message');
+
+      function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        // Reset errors
+        errorName.classList.add('hidden');
+        errorEmail.classList.add('hidden');
+        errorMessage.classList.add('hidden');
+        if (errorProjectType) errorProjectType.classList.add('hidden');
+
+        // Name Validation
+        if (!inputName.value.trim()) {
+          errorName.classList.remove('hidden');
+          isValid = false;
+        }
+
+        // Email Validation
+        if (!inputEmail.value.trim() || !validateEmail(inputEmail.value.trim())) {
+          errorEmail.classList.remove('hidden');
+          isValid = false;
+        }
+
+        // Project Type Validation
+        if (!hiddenProjectTypeInput.value) {
+          if (errorProjectType) errorProjectType.classList.remove('hidden');
+          isValid = false;
+        }
+
+        // Message Validation
+        if (!inputMessage.value.trim()) {
+          errorMessage.classList.remove('hidden');
+          isValid = false;
+        }
+
+        if (isValid) {
+          if (FORM_ENDPOINT && FORM_ENDPOINT.trim() !== "" && !FORM_ENDPOINT.includes("YOUR-WORKER-NAME")) {
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = submitBtn.querySelector('span:first-child');
+            const originalText = submitText.textContent;
+            submitBtn.disabled = true;
+            submitText.textContent = "SENDING...";
+
+            const payload = {
+              name: inputName.value.trim(),
+              email: inputEmail.value.trim(),
+              project_type: hiddenProjectTypeInput.value,
+              budget: document.getElementById('input-budget').value.trim(),
+              message: inputMessage.value.trim(),
+              page: window.location.href,
+              submitted_at: new Date().toISOString()
+            };
+
+            fetch(FORM_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            })
+            .then(async response => {
+              const data = await response.json().catch(() => ({}));
+              if (!response.ok || data.success === false) {
+                throw new Error(data.error || 'Unable to send message.');
+              }
+              showSuccessState("Your inquiry has been sent successfully. I'll get back to you soon.");
+            })
+            .catch(error => {
+              console.error('Contact form error:', error);
+              submitBtn.disabled = false;
+              submitText.textContent = originalText;
+              alert("Sorry, your message could not be sent right now. Please try again or email me directly.");
+            });
+          } else {
+            showSuccessState("Connect your secure Telegram endpoint in FORM_ENDPOINT before publishing this page.");
+          }
+        }
+      });
+
+      function showSuccessState(msgText) {
+        contactForm.classList.add('hidden');
+        formSuccessMessage.classList.remove('hidden');
+        successDescriptionText.textContent = msgText;
+      }
+
+      resetFormBtn.addEventListener('click', () => {
+        contactForm.reset();
+        tagButtons.forEach(b => b.classList.remove('selected'));
+        hiddenProjectTypeInput.value = '';
+        formSuccessMessage.classList.add('hidden');
+        contactForm.classList.remove('hidden');
+      });
+
+      /* Scroll or focus form on CTA click */
+      const ctaStartConvo = document.getElementById('cta-start-convo');
+      if (ctaStartConvo) {
+        ctaStartConvo.addEventListener('click', () => {
+          inputName.focus();
+          document.getElementById('contact-form-section').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      /* -------------------------------------------------------------
+         7. SCROLL REVEAL (INTERSECTION OBSERVER)
+      ------------------------------------------------------------- */
+      const revealItems = document.querySelectorAll('.reveal-item, .clip-reveal');
+      
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, observerOptions);
+
+      revealItems.forEach(item => revealObserver.observe(item));
+
+      /* -------------------------------------------------------------
+         8. SPATIAL MOUSE PARALLAX
+      ------------------------------------------------------------- */
+      const parallaxElems = document.querySelectorAll('.parallax-elem');
+      let targetX = 0, targetY = 0;
+      let currentX = 0, currentY = 0;
+
+      const windowHalfX = window.innerWidth / 2;
+      const windowHalfY = window.innerHeight / 2;
+
+      window.addEventListener('mousemove', (e) => {
+        targetX = (e.clientX - windowHalfX) / windowHalfX;
+        targetY = (e.clientY - windowHalfY) / windowHalfY;
+      });
+
+      function animateParallax() {
+        currentX += (targetX - currentX) * 0.05;
+        currentY += (targetY - currentY) * 0.05;
+
+        parallaxElems.forEach(elem => {
+          const depth = parseFloat(elem.getAttribute('data-depth')) || 0.03;
+          const moveX = currentX * (depth * 200);
+          const moveY = currentY * (depth * 200);
+          elem.style.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`;
+        });
+
+        requestAnimationFrame(animateParallax);
+      }
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (window.innerWidth > 768 && !prefersReducedMotion) {
+        requestAnimationFrame(animateParallax);
+      }
+
+      /* -------------------------------------------------------------
+         9. PAGE TRANSITION LEAVE
+      ------------------------------------------------------------- */
+      const transitionOverlay = document.getElementById('page-transition');
+      const navLinks = document.querySelectorAll('a[href$=".html"]');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const targetUrl = link.getAttribute('href');
+          
+          if (targetUrl && !targetUrl.startsWith('#') && !targetUrl.startsWith('http')) {
+            e.preventDefault();
+            transitionOverlay.classList.remove('translate-y-full');
+            
+            setTimeout(() => {
+              window.location.href = targetUrl;
+            }, 500);
+          }
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>
